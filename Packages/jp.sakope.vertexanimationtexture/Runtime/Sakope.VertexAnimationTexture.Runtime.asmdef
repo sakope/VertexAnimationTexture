@@ -1,0 +1,12 @@
+{
+    "name": "Sakope.VertexAnimationTexture.Runtime",
+    "rootNamespace": "",
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "noEngineReferences": false
+}
