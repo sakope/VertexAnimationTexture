@@ -116,26 +116,6 @@ namespace VertexAnimationTexture
             vatBuilder.Dispose();
         }
 
-        public static void CreateMaterial(CreationModeFlags flags)
-        {
-            AssertionCheck(out var selection);
-            StartCoroutine(selection, CreateMaterial(selection, flags));
-        }
-
-        private static IEnumerator CreateMaterial(GameObject selection, CreationModeFlags flags)
-        {
-            IMeshBaker sampler = ContainsAllFlags(flags, CreationModeFlags.MergeMesh)
-                ? new MergeMeshBaker(selection, false) : new SingleMeshBaker(selection, false);
-            var vertexTex = new VatBuilder(sampler, false);
-
-            var folderPath = AssureExistAndGetRootFolder();
-            folderPath = CreateTargetFolder(selection, folderPath);
-            yield return 0;
-
-            var mat = CreateMaterial(sampler, vertexTex);
-            SaveAsset(mat, folderPath + "/" + selection.name + ".mat");
-        }
-
         private static void AssertionCheck(out GameObject selection)
         {
             selection = Selection.activeGameObject;
@@ -173,23 +153,6 @@ namespace VertexAnimationTexture
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             return folderPath;
-        }
-
-        private static Material CreateMaterial(IMeshBaker sampler, VatBuilder vatBuilder,
-            Texture posTex = null, Texture normTex = null, Renderer renderer = null)
-        {
-
-            var mat = new Material(Shader.Find(ShaderConst.ShaderName));
-            if (renderer != null && renderer.sharedMaterial != null)
-                mat.mainTexture = renderer.sharedMaterial.mainTexture;
-            if (posTex != null) mat.SetTexture(ShaderConst.AnimTex, posTex);
-            mat.SetVector(ShaderConst.Scale, vatBuilder.Scales[0]);
-            mat.SetVector(ShaderConst.Offset, vatBuilder.Offsets[0]);
-            mat.SetVector(ShaderConst.AnimEnd, new Vector4(sampler.Length, vatBuilder.VerticesList.Count - 1, 0f, 0f));
-            mat.SetFloat(ShaderConst.Fps, VatBuilder.Fps);
-            if (normTex != null)
-                mat.SetTexture(ShaderConst.NormTex, normTex);
-            return mat;
         }
 
         private static Material CreateMaterial(int meshId, IMeshBaker meshBaker, VatBuilder vatBuilder,
