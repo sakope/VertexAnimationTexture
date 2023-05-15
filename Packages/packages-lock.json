@@ -136,7 +136,7 @@
       "url": "https://packages.unity.com"
     },
     "jp.sakope.vertexanimationtexture": {
-      "version": "file:jp.sakope.vertexanimationtexture",
+      "version": "file:VertexAnimationTexture",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
