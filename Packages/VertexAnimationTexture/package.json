@@ -1,13 +1,13 @@
 {
-    "displayName": "Vertex Animation Texture",
-    "name": "jp.sakope.vertexanimationtexture",
-    "description": "Vertex animation texture that can be baked in Unity with world coordinate or local coordinates + Model Matrix.\nIt supports mesh merging and mesh separation.\nAnd even after mesh merging, GPU procedural motion in the local coordinate system is possible in the Shader.",
-    "keywords": [
-        "unity"
-    ],
-    "license": "MIT",
-    "unity": "2020.3",
-    "unityRelease": "1f1",
-    "version": "1.0.0",
-    "author": "Yoshiaki Sakota"
+  "displayName": "Vertex Animation Texture",
+  "name": "jp.sakope.vertexanimationtexture",
+  "description": "Vertex animation texture that can be baked in Unity with world coordinate or local coordinates + Model Matrix.\nIt supports mesh merging and mesh separation.\nAnd even after mesh merging, GPU procedural motion in the local coordinate system is possible in the Shader.",
+  "keywords": [
+    "unity"
+  ],
+  "license": "MIT",
+  "unity": "2020.3",
+  "unityRelease": "1f1",
+  "version": "1.0.1",
+  "author": "Yoshiaki Sakota"
 }
