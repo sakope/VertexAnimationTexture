@@ -43,7 +43,7 @@ Shader "VertexAnimation/WorldCoord/NormalVisualizer"
 
             vs2ps vert(vsin v) {
                 vs2ps OUT;
-                float t = _AnimTex_T + _Time.y;
+                float t = _AnimTex_T;
                 t = clamp(t, 0, _AnimTex_AnimEnd.x);
 
                 OUT.vertex.xyz = AnimTexVertexPos(v.vid, t);
@@ -89,7 +89,7 @@ Shader "VertexAnimation/WorldCoord/NormalVisualizer"
             float4 _Color;
             
             vs2ps vert(vsin v) {
-                float t = _AnimTex_T + _Time.y;
+                float t = _AnimTex_T;
                 t = clamp(t, 0, _AnimTex_AnimEnd.x);
 
                 v.vertex.xyz = AnimTexVertexPos(v.vid, t);

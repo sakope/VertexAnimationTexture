@@ -60,10 +60,10 @@ Shader "VertexAnimation/LocalCoord_Matrix/OneTime"
 
                 //High performance but low precision.
                 float3x3 Matrix_ITM = InvTransModelMatrixAnimTex(t);
-                OUT.normal = mul(Matrix_ITM, OUT.normal.xyz);
+                OUT.normal = mul(Matrix_ITM, OUT.normal);
 
                 //High precision but calculation cost is higher than above.
-                //OUT.normal = mul(transpose(Inverse(Matrix_M)), float4(OUT.normal.xyz, 1));
+                //OUT.normal = mul(transpose(InverseMatrix((float3x3)Matrix_M)), OUT.normal);
 
                 OUT.vertex = UnityObjectToClipPos(float4(OUT.vertex.xyz, 1));
                 OUT.normal = UnityObjectToWorldNormal(OUT.normal);
@@ -114,7 +114,10 @@ Shader "VertexAnimation/LocalCoord_Matrix/OneTime"
                 float4x4 Matrix_M = ModelMatrixAnimTex(t);
                 v.vertex = mul(Matrix_M, float4(v.vertex.xyz, 1));
                 float3x3 Matrix_ITM = InvTransModelMatrixAnimTex(t);
-                v.normal = mul(Matrix_ITM, v.normal.xyz);
+                v.normal = mul(Matrix_ITM, v.normal);
+
+                //High precision but calculation cost is higher than above.
+                //v.normal = mul(transpose(InverseMatrix((float3x3)Matrix_M)), v.normal);
 
                 vs2ps OUT;
                 TRANSFER_SHADOW_CASTER_NORMALOFFSET(OUT);

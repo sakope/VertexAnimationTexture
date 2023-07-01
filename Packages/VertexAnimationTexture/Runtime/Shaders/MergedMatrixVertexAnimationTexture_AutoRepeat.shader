@@ -60,10 +60,10 @@ Shader "VertexAnimation/LocalCoord_Matrix_MergedMesh/AutoRepeat" {
 
                 //High performance but low precision.
                 //float3x3 Matrix_ITM = InvTransModelMatrixAnimTex(t, v.meshId.x);
-                //OUT.normal = mul(Matrix_ITM, OUT.normal.xyz);
+                //OUT.normal = mul(Matrix_ITM, OUT.normal);
 
                 //High precision but calculation cost is higher than above.
-                OUT.normal = mul((float3x3)transpose(Inverse(Matrix_M)), OUT.normal);
+                OUT.normal = mul(transpose(InverseMatrix((float3x3)Matrix_M)), OUT.normal);
 
                 OUT.vertex = UnityObjectToClipPos(float4(OUT.vertex.xyz, 1));
                 OUT.normal = UnityObjectToWorldNormal(OUT.normal);
@@ -115,11 +115,11 @@ Shader "VertexAnimation/LocalCoord_Matrix_MergedMesh/AutoRepeat" {
                 float4x4 Matrix_M = ModelMatrixAnimTex(t, (uint)v.meshId.x);
                 v.vertex = mul(Matrix_M, float4(v.vertex.xyz, 1));
                 //High performance but low precision.
-                float3x3 Matrix_ITM = InvTransModelMatrixAnimTex(t, v.meshId.x);
-                v.normal = mul(Matrix_ITM, v.normal.xyz);
+                //float3x3 Matrix_ITM = InvTransModelMatrixAnimTex(t, v.meshId.x);
+                //v.normal = mul(Matrix_ITM, v.normal);
 
                 //High precision but calculation cost is higher than above.
-                //v.normal = mul((float3x3)transpose(Inverse(Matrix_M)), v.normal);
+                v.normal = mul(transpose(InverseMatrix((float3x3)Matrix_M)), v.normal);
 
 
                 vs2ps OUT;

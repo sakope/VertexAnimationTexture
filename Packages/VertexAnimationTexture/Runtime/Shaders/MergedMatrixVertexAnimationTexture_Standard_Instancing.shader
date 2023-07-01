@@ -71,10 +71,10 @@ Shader "VertexAnimation/LocalCoord_Matrix_MergedMesh/Standard_Instancing"
 
             //High performance but low precision.
             //float3x3 Matrix_ITM = InvTransModelMatrixAnimTex(t, meshId);
-            //v.normal = mul(Matrix_ITM, v.normal.xyz);
+            //v.normal = mul(Matrix_ITM, v.normal);
 
             //High precision but calculation cost is higher than above.
-            v.normal = mul(transpose(Inverse(Matrix_M)), float4(v.normal.xyz, 1));
+            v.normal = mul(transpose(InverseMatrix((float3x3)Matrix_M)), v.normal);
         }
 
         void surf(Input IN, inout SurfaceOutputStandard o)
